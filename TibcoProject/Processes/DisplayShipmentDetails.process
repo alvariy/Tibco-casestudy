@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/namespaces/tnt/plugins/file/v2" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:ns="http://www.tibco.com/namespaces/tnt/plugins/file" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <pd:name>TibcoProject/Processes/DisplayShipmentDetails.process</pd:name>
     <pd:startName>HTTP Receiver</pd:startName>
     <pd:startX>0</pd:startX>
@@ -9,7 +9,7 @@
         <pd:type>com.tibco.plugin.http.HTTPEventSource</pd:type>
         <pd:resourceType>httppalette.httpEventSource</pd:resourceType>
         <pd:x>47</pd:x>
-        <pd:y>200</pd:y>
+        <pd:y>183</pd:y>
         <config>
             <outputMode>String</outputMode>
             <defaultEncoding>ISO8859_1</defaultEncoding>
@@ -19,6 +19,11 @@
             <customField>
                 <row>
                     <attribute>excelFile</attribute>
+                    <attributeType>string</attributeType>
+                    <attributeCard>optional</attributeCard>
+                </row>
+                <row>
+                    <attribute>xmlString</attribute>
                     <attributeType>string</attributeType>
                     <attributeCard>optional</attributeCard>
                 </row>
@@ -43,8 +48,8 @@
         <pd:inputBindings/>
     </pd:starter>
     <pd:endName>End</pd:endName>
-    <pd:endX>1282</pd:endX>
-    <pd:endY>203</pd:endY>
+    <pd:endX>1350</pd:endX>
+    <pd:endY>229</pd:endY>
     <pd:errorSchemas/>
     <pd:processVariables>
         <Variable0>
@@ -61,8 +66,8 @@
     <pd:group name="SetList">
         <pd:type>com.tibco.pe.core.LoopGroup</pd:type>
         <pd:resourceType>ae.process.group</pd:resourceType>
-        <pd:x>324</pd:x>
-        <pd:y>59</pd:y>
+        <pd:x>476</pd:x>
+        <pd:y>254</pd:y>
         <pd:width>485</pd:width>
         <pd:height>292</pd:height>
         <pd:collapsedWidth>57</pd:collapsedWidth>
@@ -80,7 +85,7 @@
             <pd:accumulateOutput>false</pd:accumulateOutput>
         </config>
         <pd:inputBindings/>
-        <pd:expanded>true</pd:expanded>
+        <pd:expanded>false</pd:expanded>
         <pd:transition>
             <pd:from>start</pd:from>
             <pd:to>GetXMLText</pd:to>
@@ -119,8 +124,8 @@
         <pd:activity name="SetHTMLData">
             <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
             <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
-            <pd:x>687</pd:x>
-            <pd:y>273</pd:y>
+            <pd:x>839</pd:x>
+            <pd:y>468</pd:y>
             <config>
                 <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
             </config>
@@ -135,8 +140,8 @@
         <pd:activity name="GetHTMLData">
             <pd:type>com.tibco.pe.core.GetSharedVariableActivity</pd:type>
             <pd:resourceType>ae.activities.getSharedVariable</pd:resourceType>
-            <pd:x>583</pd:x>
-            <pd:y>131</pd:y>
+            <pd:x>735</pd:x>
+            <pd:y>326</pd:y>
             <config>
                 <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
             </config>
@@ -145,8 +150,8 @@
         <pd:activity name="GetXMLText">
             <pd:type>com.tibco.pe.core.GetSharedVariableActivity</pd:type>
             <pd:resourceType>ae.activities.getSharedVariable</pd:resourceType>
-            <pd:x>406</pd:x>
-            <pd:y>141</pd:y>
+            <pd:x>558</pd:x>
+            <pd:y>336</pd:y>
             <config>
                 <variableConfig>/TibcoProject/Resource/Common/SharedVariable/ConvertedXMLText.sharedvariable</variableConfig>
             </config>
@@ -155,8 +160,8 @@
         <pd:activity name="SetXMLText">
             <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
             <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
-            <pd:x>492</pd:x>
-            <pd:y>266</pd:y>
+            <pd:x>644</pd:x>
+            <pd:y>461</pd:y>
             <config>
                 <variableConfig>/TibcoProject/Resource/Common/SharedVariable/ConvertedXMLText.sharedvariable</variableConfig>
             </config>
@@ -172,8 +177,8 @@
     <pd:activity name="GetSetVariable">
         <pd:type>com.tibco.pe.core.GetSharedVariableActivity</pd:type>
         <pd:resourceType>ae.activities.getSharedVariable</pd:resourceType>
-        <pd:x>899</pd:x>
-        <pd:y>203</pd:y>
+        <pd:x>807</pd:x>
+        <pd:y>266</pd:y>
         <config>
             <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
         </config>
@@ -182,8 +187,8 @@
     <pd:activity name="Send HTTP Response">
         <pd:type>com.tibco.plugin.http.HTTPResponseActivity</pd:type>
         <pd:resourceType>httppalette.httpWebResponse</pd:resourceType>
-        <pd:x>1150</pd:x>
-        <pd:y>203</pd:y>
+        <pd:x>1130</pd:x>
+        <pd:y>215</pd:y>
         <config>
             <closeConnection>true</closeConnection>
             <eventSource>HTTP Receiver</eventSource>
@@ -212,8 +217,8 @@
     <pd:activity name="SetVariable-1">
         <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
         <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
-        <pd:x>1030</pd:x>
-        <pd:y>203</pd:y>
+        <pd:x>966</pd:x>
+        <pd:y>239</pd:y>
         <config>
             <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
             <showResult>true</showResult>
@@ -221,7 +226,7 @@
         <pd:inputBindings>
             <root>
                 <param>
-                    <xsl:value-of select="concat(&quot;&lt;form action='http://localhost:6970/?xmlString='&quot;,$GetSetVariable/root/param,&quot;>&quot;,$GetSetVariable/root/param,&quot;&lt;br>&lt;input type='submit' value='Go to Google' /> &lt;/form>&quot;)"/>
+                    <xsl:value-of select="concat($GetSetVariable/root/param,&quot;&lt;br>&lt;a href='http://localhost:6969/?xmlString=&quot;,$GetXMLText/root/XMLText,&quot;' >Download&lt;/a>&quot;)"/>
                 </param>
             </root>
         </pd:inputBindings>
@@ -229,8 +234,8 @@
     <pd:activity name="SHP Query">
         <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
         <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
-        <pd:x>243</pd:x>
-        <pd:y>200</pd:y>
+        <pd:x>316</pd:x>
+        <pd:y>251</pd:y>
         <config>
             <timeout>10</timeout>
             <commit>false</commit>
@@ -286,12 +291,70 @@
             </jdbcQueryActivityInput>
         </pd:inputBindings>
     </pd:activity>
+    <pd:activity name="ConvertSHPtoXMLTextSender">
+        <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
+        <pd:resourceType>ae.process.subprocess</pd:resourceType>
+        <pd:x>454</pd:x>
+        <pd:y>452</pd:y>
+        <config>
+            <processName>/TibcoProject/Processes/ConvertSHPtoXMLTextSender.process</processName>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:activity name="Send-HTTP-Response-1">
+        <pd:type>com.tibco.plugin.http.HTTPResponseActivity</pd:type>
+        <pd:resourceType>httppalette.httpWebResponse</pd:resourceType>
+        <pd:x>864</pd:x>
+        <pd:y>102</pd:y>
+        <config>
+            <closeConnection>true</closeConnection>
+            <eventSource>HTTP Receiver</eventSource>
+            <Headers>
+                <xsd:element name="root">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="StatusLine" type="xsd:string" minOccurs="0"/>
+                            <xsd:element name="Content-Type" type="xsd:string" minOccurs="0"/>
+                            <xsd:element name="Set-Cookie" type="xsd:string" minOccurs="0"/>
+                            <xsd:element name="Pragma" type="xsd:string" minOccurs="0"/>
+                            <xsd:element name="Location" type="xsd:string" minOccurs="0"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </Headers>
+        </config>
+        <pd:inputBindings>
+            <ResponseActivityInput>
+                <asciiContent>
+                    <xsl:value-of select="$Read-File/ns:ReadActivityOutputTextClass/fileContent/textContent"/>
+                </asciiContent>
+            </ResponseActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Read File">
+        <pd:type>com.tibco.plugin.file.FileReadActivity</pd:type>
+        <pd:resourceType>ae.activities.FileReadActivity</pd:resourceType>
+        <pd:x>582</pd:x>
+        <pd:y>111</pd:y>
+        <config>
+            <encoding>text</encoding>
+        </config>
+        <pd:inputBindings>
+            <pfx:ReadActivityInputClass>
+                <fileName>
+                    <xsl:value-of select="&quot;D:\TIBCO_TRAINING_ITA4\CASE_STUDY\Tibco-casestudy\HTML\CaseStudyHome.html&quot;"/>
+                </fileName>
+            </pfx:ReadActivityInputClass>
+        </pd:inputBindings>
+    </pd:activity>
     <pd:transition>
         <pd:from>HTTP Receiver</pd:from>
         <pd:to>SHP Query</pd:to>
+        <pd:xpathDescription>Has XMLString Param</pd:xpathDescription>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
-        <pd:conditionType>always</pd:conditionType>
+        <pd:conditionType>xpath</pd:conditionType>
+        <pd:xpath>string-length($HTTP-Receiver/ProcessStarterOutput/parameters/xmlString)  = 0 and string-length($HTTP-Receiver/ProcessStarterOutput/parameters/excelFile) !=0</pd:xpath>
     </pd:transition>
     <pd:transition>
         <pd:from>Send HTTP Response</pd:from>
@@ -324,6 +387,43 @@
     <pd:transition>
         <pd:from>SetVariable-1</pd:from>
         <pd:to>Send HTTP Response</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>HTTP Receiver</pd:from>
+        <pd:to>ConvertSHPtoXMLTextSender</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>otherwise</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>ConvertSHPtoXMLTextSender</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>HTTP Receiver</pd:from>
+        <pd:to>Read File</pd:to>
+        <pd:xpathDescription>No param</pd:xpathDescription>
+        <pd:lineType>Multiple Bends</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>xpath</pd:conditionType>
+        <pd:xpath>string-length($HTTP-Receiver/ProcessStarterOutput/parameters/excelFile) = 0 and string-length($HTTP-Receiver/ProcessStarterOutput/parameters/xmlString) = 0</pd:xpath>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Send-HTTP-Response-1</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Read File</pd:from>
+        <pd:to>Send-HTTP-Response-1</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
