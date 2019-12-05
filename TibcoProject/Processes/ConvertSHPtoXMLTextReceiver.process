@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:ns="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:ns2="http://www.tibco.com/namespaces/tnt/plugins/file">
     <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="http://www.sitemaps.org/schemas/sitemap/0.9" schemaLocation="/Resource/Common/Schema/sample.xsd"/>
-    <pd:name>Processes/ConvertSHPtoXMLTextReceiver.process</pd:name>
+    <pd:name>TibcoProject/Processes/ConvertSHPtoXMLTextReceiver.process</pd:name>
     <pd:startName>JMS Queue Receiver</pd:startName>
     <pd:startX>0</pd:startX>
     <pd:startY>0</pd:startY>
@@ -10,7 +10,7 @@
         <pd:type>com.tibco.plugin.jms.JMSQueueEventSource</pd:type>
         <pd:resourceType>ae.activities.JMSQueueEventSource</pd:resourceType>
         <pd:x>128</pd:x>
-        <pd:y>95</pd:y>
+        <pd:y>93</pd:y>
         <config>
             <PermittedMessageType>Text</PermittedMessageType>
             <SessionAttributes>
@@ -24,28 +24,28 @@
                 <JMSExpiration>0</JMSExpiration>
                 <JMSPriority>4</JMSPriority>
             </ConfigurableHeaders>
-            <ConnectionReference>/Connections/SHP INFO CONNECTION.sharedjmscon</ConnectionReference>
+            <ConnectionReference>/TibcoProject/Connections/SHP INFO CONNECTION.sharedjmscon</ConnectionReference>
         </config>
         <pd:inputBindings/>
     </pd:starter>
     <pd:endName>End</pd:endName>
-    <pd:endX>723</pd:endX>
-    <pd:endY>95</pd:endY>
+    <pd:endX>506</pd:endX>
+    <pd:endY>93</pd:endY>
     <pd:errorSchemas/>
     <pd:processVariables/>
     <pd:targetNamespace>http://xmlns.example.com/1575529527338</pd:targetNamespace>
     <pd:activity name="Create File">
         <pd:type>com.tibco.plugin.file.FileCreateActivity</pd:type>
         <pd:resourceType>ae.activities.FileCreateActivity</pd:resourceType>
-        <pd:x>392</pd:x>
-        <pd:y>97</pd:y>
+        <pd:x>251</pd:x>
+        <pd:y>93</pd:y>
         <config>
             <overwrite>true</overwrite>
         </config>
         <pd:inputBindings>
             <ns2:CreateActivityInputClass>
                 <fileName>
-                    <xsl:value-of select="&quot;C:\Users\ALVARIY\Desktop\FILEMO.csv&quot;"/>
+                    <xsl:value-of select="&quot;C:\Users\cruztr\Desktop\FILEMO.csv&quot;"/>
                 </fileName>
             </ns2:CreateActivityInputClass>
         </pd:inputBindings>
@@ -53,8 +53,8 @@
     <pd:activity name="Parse XML">
         <pd:type>com.tibco.plugin.xml.XMLParseActivity</pd:type>
         <pd:resourceType>ae.activities.XMLParseActivity</pd:resourceType>
-        <pd:x>275</pd:x>
-        <pd:y>95</pd:y>
+        <pd:x>284</pd:x>
+        <pd:y>262</pd:y>
         <config>
             <inputStyle>text</inputStyle>
             <xsdVersion>default</xsdVersion>
@@ -70,8 +70,8 @@
     <pd:activity name="Write File">
         <pd:type>com.tibco.plugin.file.FileWriteActivity</pd:type>
         <pd:resourceType>ae.activities.FileWriteActivity</pd:resourceType>
-        <pd:x>533</pd:x>
-        <pd:y>95</pd:y>
+        <pd:x>392</pd:x>
+        <pd:y>93</pd:y>
         <config>
             <encoding>text</encoding>
             <compressFile>None</compressFile>
@@ -80,23 +80,16 @@
         <pd:inputBindings>
             <ns2:WriteActivityInputTextClass>
                 <fileName>
-                    <xsl:value-of select="&quot;C:\Users\ALVARIY\Desktop\FILEMO.csv&quot;"/>
+                    <xsl:value-of select="&quot;C:\Users\cruztr\Desktop\FILEMO.csv&quot;"/>
                 </fileName>
                 <textContent>
-                    <xsl:value-of select="concat($Parse-XML/pfx:urlset/pfx:url[1]/pfx:loc, $Parse-XML/pfx:urlset/pfx:url[1]/pfx:loc, $Parse-XML/pfx:urlset/pfx:url[1]/pfx:loc)"/>
+                    <xsl:value-of select="$JMS-Queue-Receiver/ns:ActivityOutput/Body"/>
                 </textContent>
             </ns2:WriteActivityInputTextClass>
         </pd:inputBindings>
     </pd:activity>
     <pd:transition>
         <pd:from>JMS Queue Receiver</pd:from>
-        <pd:to>Parse XML</pd:to>
-        <pd:lineType>Default</pd:lineType>
-        <pd:lineColor>-16777216</pd:lineColor>
-        <pd:conditionType>always</pd:conditionType>
-    </pd:transition>
-    <pd:transition>
-        <pd:from>Parse XML</pd:from>
         <pd:to>Create File</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
