@@ -1,0 +1,18 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="urlset">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="url" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:anyURI" name="loc"/>
+              <xs:element type="xs:date" name="lastmod" minOccurs="0"/>
+              <xs:element type="xs:string" name="changefreq"/>
+              <xs:element type="xs:float" name="priority" minOccurs="0"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
