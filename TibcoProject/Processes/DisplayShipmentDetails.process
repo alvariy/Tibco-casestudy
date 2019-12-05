@@ -8,8 +8,8 @@
     <pd:starter name="HTTP Receiver">
         <pd:type>com.tibco.plugin.http.HTTPEventSource</pd:type>
         <pd:resourceType>httppalette.httpEventSource</pd:resourceType>
-        <pd:x>122</pd:x>
-        <pd:y>153</pd:y>
+        <pd:x>53</pd:x>
+        <pd:y>157</pd:y>
         <config>
             <outputMode>String</outputMode>
             <defaultEncoding>ISO8859_1</defaultEncoding>
@@ -43,8 +43,8 @@
         <pd:inputBindings/>
     </pd:starter>
     <pd:endName>End</pd:endName>
-    <pd:endX>1233</pd:endX>
-    <pd:endY>161</pd:endY>
+    <pd:endX>1273</pd:endX>
+    <pd:endY>170</pd:endY>
     <pd:errorSchemas/>
     <pd:processVariables>
         <Variable0>
@@ -61,8 +61,8 @@
     <pd:group name="Group">
         <pd:type>com.tibco.pe.core.LoopGroup</pd:type>
         <pd:resourceType>ae.process.group</pd:resourceType>
-        <pd:x>406</pd:x>
-        <pd:y>42</pd:y>
+        <pd:x>338</pd:x>
+        <pd:y>47</pd:y>
         <pd:width>485</pd:width>
         <pd:height>219</pd:height>
         <pd:collapsedWidth>57</pd:collapsedWidth>
@@ -77,13 +77,13 @@
             <pd:indexSlot>index</pd:indexSlot>
             <pd:outSlot>accOutput</pd:outSlot>
             <pd:activityOutputName>Map Data</pd:activityOutputName>
-            <pd:accumulateOutput>true</pd:accumulateOutput>
+            <pd:accumulateOutput>false</pd:accumulateOutput>
         </config>
         <pd:inputBindings/>
         <pd:expanded>true</pd:expanded>
         <pd:transition>
             <pd:from>start</pd:from>
-            <pd:to>Map Data</pd:to>
+            <pd:to>GetSharedVariable</pd:to>
             <pd:lineType>Default</pd:lineType>
             <pd:lineColor>-16777216</pd:lineColor>
             <pd:conditionType>always</pd:conditionType>
@@ -96,48 +96,17 @@
             <pd:conditionType>always</pd:conditionType>
         </pd:transition>
         <pd:transition>
-            <pd:from>Map Data</pd:from>
-            <pd:to>GetSharedVariable</pd:to>
-            <pd:lineType>Default</pd:lineType>
-            <pd:lineColor>-16777216</pd:lineColor>
-            <pd:conditionType>always</pd:conditionType>
-        </pd:transition>
-        <pd:transition>
             <pd:from>GetSharedVariable</pd:from>
             <pd:to>SetVariable</pd:to>
             <pd:lineType>Default</pd:lineType>
             <pd:lineColor>-16777216</pd:lineColor>
             <pd:conditionType>always</pd:conditionType>
         </pd:transition>
-        <pd:activity name="Map Data">
-            <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
-            <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
-            <pd:x>506</pd:x>
-            <pd:y>158</pd:y>
-            <config>
-                <element>
-                    <xsd:element name="root">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="ListSHP" type="xsd:string"/>
-                            </xsd:sequence>
-                        </xsd:complexType>
-                    </xsd:element>
-                </element>
-            </config>
-            <pd:inputBindings>
-                <root>
-                    <ListSHP>
-                        <xsl:value-of select="concat($SHP-Query/resultSet/Record[$index]/CONTACT_ID,$SHP-Query/resultSet/Record[$index]/EMAIL_ADDR,$SHP-Query/resultSet/Record[$index]/PARTY_ROLE,$SHP-Query/resultSet/Record[$index]/PARTY_NAME,$SHP-Query/resultSet/Record[$index]/SAP_ID,&quot;&lt;br>&quot;)"/>
-                    </ListSHP>
-                </root>
-            </pd:inputBindings>
-        </pd:activity>
         <pd:activity name="SetVariable">
             <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
             <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
-            <pd:x>793</pd:x>
-            <pd:y>160</pd:y>
+            <pd:x>687</pd:x>
+            <pd:y>168</pd:y>
             <config>
                 <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
             </config>
@@ -152,8 +121,8 @@
         <pd:activity name="GetSharedVariable">
             <pd:type>com.tibco.pe.core.GetSharedVariableActivity</pd:type>
             <pd:resourceType>ae.activities.getSharedVariable</pd:resourceType>
-            <pd:x>629</pd:x>
-            <pd:y>159</pd:y>
+            <pd:x>481</pd:x>
+            <pd:y>170</pd:y>
             <config>
                 <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
             </config>
@@ -163,8 +132,8 @@
     <pd:activity name="GetSetVariable">
         <pd:type>com.tibco.pe.core.GetSharedVariableActivity</pd:type>
         <pd:resourceType>ae.activities.getSharedVariable</pd:resourceType>
-        <pd:x>959</pd:x>
-        <pd:y>158</pd:y>
+        <pd:x>890</pd:x>
+        <pd:y>162</pd:y>
         <config>
             <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
         </config>
@@ -173,8 +142,8 @@
     <pd:activity name="Send HTTP Response">
         <pd:type>com.tibco.plugin.http.HTTPResponseActivity</pd:type>
         <pd:resourceType>httppalette.httpWebResponse</pd:resourceType>
-        <pd:x>1118</pd:x>
-        <pd:y>161</pd:y>
+        <pd:x>1141</pd:x>
+        <pd:y>167</pd:y>
         <config>
             <closeConnection>true</closeConnection>
             <eventSource>HTTP Receiver</eventSource>
@@ -195,7 +164,7 @@
         <pd:inputBindings>
             <ResponseActivityInput>
                 <asciiContent>
-                    <xsl:value-of select="$GetSetVariable/root/param"/>
+                    <xsl:value-of select="$SetVariable-1/root/param"/>
                 </asciiContent>
             </ResponseActivityInput>
         </pd:inputBindings>
@@ -203,8 +172,8 @@
     <pd:activity name="SHP Query">
         <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
         <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
-        <pd:x>318</pd:x>
-        <pd:y>153</pd:y>
+        <pd:x>249</pd:x>
+        <pd:y>157</pd:y>
         <config>
             <timeout>10</timeout>
             <commit>false</commit>
@@ -260,6 +229,23 @@
             </jdbcQueryActivityInput>
         </pd:inputBindings>
     </pd:activity>
+    <pd:activity name="SetVariable-1">
+        <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
+        <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
+        <pd:x>1021</pd:x>
+        <pd:y>170</pd:y>
+        <config>
+            <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
+            <showResult>true</showResult>
+        </config>
+        <pd:inputBindings>
+            <root>
+                <param>
+                    <xsl:value-of select="concat(&quot;&lt;form action='http://google.com'>&quot;,$GetSetVariable/root/param,&quot;&lt;br>&lt;input type='submit' value='Go to Google' /> &lt;/form>&quot;)"/>
+                </param>
+            </root>
+        </pd:inputBindings>
+    </pd:activity>
     <pd:transition>
         <pd:from>HTTP Receiver</pd:from>
         <pd:to>SHP Query</pd:to>
@@ -290,6 +276,13 @@
     </pd:transition>
     <pd:transition>
         <pd:from>GetSetVariable</pd:from>
+        <pd:to>SetVariable-1</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>SetVariable-1</pd:from>
         <pd:to>Send HTTP Response</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
