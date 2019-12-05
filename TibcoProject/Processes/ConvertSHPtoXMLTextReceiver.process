@@ -29,8 +29,8 @@
         <pd:inputBindings/>
     </pd:starter>
     <pd:endName>End</pd:endName>
-    <pd:endX>506</pd:endX>
-    <pd:endY>93</pd:endY>
+    <pd:endX>682</pd:endX>
+    <pd:endY>101</pd:endY>
     <pd:errorSchemas/>
     <pd:processVariables/>
     <pd:targetNamespace>http://xmlns.example.com/1575529527338</pd:targetNamespace>
@@ -48,23 +48,6 @@
                     <xsl:value-of select="&quot;C:\Users\cruztr\Desktop\FILEMO.csv&quot;"/>
                 </fileName>
             </ns2:CreateActivityInputClass>
-        </pd:inputBindings>
-    </pd:activity>
-    <pd:activity name="Parse XML">
-        <pd:type>com.tibco.plugin.xml.XMLParseActivity</pd:type>
-        <pd:resourceType>ae.activities.XMLParseActivity</pd:resourceType>
-        <pd:x>284</pd:x>
-        <pd:y>262</pd:y>
-        <config>
-            <inputStyle>text</inputStyle>
-            <xsdVersion>default</xsdVersion>
-            <validateOutput>true</validateOutput>
-            <term ref="pfx:urlset"/>
-        </config>
-        <pd:inputBindings>
-            <xmlString>
-                <xsl:value-of select="$JMS-Queue-Receiver/ns:ActivityOutput/Body"/>
-            </xmlString>
         </pd:inputBindings>
     </pd:activity>
     <pd:activity name="Write File">
@@ -88,6 +71,16 @@
             </ns2:WriteActivityInputTextClass>
         </pd:inputBindings>
     </pd:activity>
+    <pd:activity name="Confirm">
+        <pd:type>com.tibco.pe.core.ConfirmActivity</pd:type>
+        <pd:resourceType>activity.confirm</pd:resourceType>
+        <pd:x>541</pd:x>
+        <pd:y>95</pd:y>
+        <config>
+            <ConfirmEvent>JMS Queue Receiver</ConfirmEvent>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
     <pd:transition>
         <pd:from>JMS Queue Receiver</pd:from>
         <pd:to>Create File</pd:to>
@@ -97,7 +90,7 @@
     </pd:transition>
     <pd:transition>
         <pd:from>Write File</pd:from>
-        <pd:to>End</pd:to>
+        <pd:to>Confirm</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
@@ -105,6 +98,13 @@
     <pd:transition>
         <pd:from>Create File</pd:from>
         <pd:to>Write File</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Confirm</pd:from>
+        <pd:to>End</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>

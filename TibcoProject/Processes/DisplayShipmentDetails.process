@@ -8,8 +8,8 @@
     <pd:starter name="HTTP Receiver">
         <pd:type>com.tibco.plugin.http.HTTPEventSource</pd:type>
         <pd:resourceType>httppalette.httpEventSource</pd:resourceType>
-        <pd:x>47</pd:x>
-        <pd:y>183</pd:y>
+        <pd:x>87</pd:x>
+        <pd:y>220</pd:y>
         <config>
             <outputMode>String</outputMode>
             <defaultEncoding>ISO8859_1</defaultEncoding>
@@ -48,8 +48,8 @@
         <pd:inputBindings/>
     </pd:starter>
     <pd:endName>End</pd:endName>
-    <pd:endX>1350</pd:endX>
-    <pd:endY>229</pd:endY>
+    <pd:endX>969</pd:endX>
+    <pd:endY>220</pd:endY>
     <pd:errorSchemas/>
     <pd:processVariables>
         <Variable0>
@@ -63,249 +63,58 @@
         </Variable0>
     </pd:processVariables>
     <pd:targetNamespace>http://xmlns.example.com/1575531817911</pd:targetNamespace>
-    <pd:group name="SetList">
-        <pd:type>com.tibco.pe.core.LoopGroup</pd:type>
-        <pd:resourceType>ae.process.group</pd:resourceType>
-        <pd:x>476</pd:x>
-        <pd:y>254</pd:y>
-        <pd:width>485</pd:width>
-        <pd:height>292</pd:height>
-        <pd:collapsedWidth>57</pd:collapsedWidth>
-        <pd:collapsedHeight>70</pd:collapsedHeight>
-        <pd:groupVariables/>
-        <pd:joinToggle>inherit</pd:joinToggle>
+    <pd:activity name="Catch">
+        <pd:type>com.tibco.pe.core.CatchActivity</pd:type>
+        <pd:resourceType>ae.activities.catch</pd:resourceType>
+        <pd:x>1339</pd:x>
+        <pd:y>220</pd:y>
+        <pd:handler>true</pd:handler>
         <config>
-            <pd:groupType>inputLoop</pd:groupType>
-            <pd:serializable>false</pd:serializable>
-            <pd:over>$SHP-Query/resultSet/Record</pd:over>
-            <pd:iterationElementSlot>element</pd:iterationElementSlot>
-            <pd:indexSlot>index</pd:indexSlot>
-            <pd:outSlot>accOutput</pd:outSlot>
-            <pd:activityOutputName>Map Data</pd:activityOutputName>
-            <pd:accumulateOutput>false</pd:accumulateOutput>
-        </config>
-        <pd:inputBindings/>
-        <pd:expanded>false</pd:expanded>
-        <pd:transition>
-            <pd:from>start</pd:from>
-            <pd:to>GetXMLText</pd:to>
-            <pd:lineType>Default</pd:lineType>
-            <pd:lineColor>-16777216</pd:lineColor>
-            <pd:conditionType>always</pd:conditionType>
-        </pd:transition>
-        <pd:transition>
-            <pd:from>SetHTMLData</pd:from>
-            <pd:to>end</pd:to>
-            <pd:lineType>Default</pd:lineType>
-            <pd:lineColor>-16777216</pd:lineColor>
-            <pd:conditionType>always</pd:conditionType>
-        </pd:transition>
-        <pd:transition>
-            <pd:from>GetHTMLData</pd:from>
-            <pd:to>SetHTMLData</pd:to>
-            <pd:lineType>Default</pd:lineType>
-            <pd:lineColor>-16777216</pd:lineColor>
-            <pd:conditionType>always</pd:conditionType>
-        </pd:transition>
-        <pd:transition>
-            <pd:from>GetXMLText</pd:from>
-            <pd:to>SetXMLText</pd:to>
-            <pd:lineType>Default</pd:lineType>
-            <pd:lineColor>-16777216</pd:lineColor>
-            <pd:conditionType>always</pd:conditionType>
-        </pd:transition>
-        <pd:transition>
-            <pd:from>SetXMLText</pd:from>
-            <pd:to>GetHTMLData</pd:to>
-            <pd:lineType>Default</pd:lineType>
-            <pd:lineColor>-16777216</pd:lineColor>
-            <pd:conditionType>always</pd:conditionType>
-        </pd:transition>
-        <pd:activity name="SetHTMLData">
-            <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
-            <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
-            <pd:x>839</pd:x>
-            <pd:y>468</pd:y>
-            <config>
-                <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
-            </config>
-            <pd:inputBindings>
-                <root>
-                    <param>
-                        <xsl:value-of select="concat($GetHTMLData/root/param,$SHP-Query/resultSet/Record[$index]/CONTACT_ID,$SHP-Query/resultSet/Record[$index]/EMAIL_ADDR,$SHP-Query/resultSet/Record[$index]/PARTY_ROLE,$SHP-Query/resultSet/Record[$index]/PARTY_NAME,$SHP-Query/resultSet/Record[$index]/SAP_ID,&quot;&lt;br>&quot;)"/>
-                    </param>
-                </root>
-            </pd:inputBindings>
-        </pd:activity>
-        <pd:activity name="GetHTMLData">
-            <pd:type>com.tibco.pe.core.GetSharedVariableActivity</pd:type>
-            <pd:resourceType>ae.activities.getSharedVariable</pd:resourceType>
-            <pd:x>735</pd:x>
-            <pd:y>326</pd:y>
-            <config>
-                <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
-            </config>
-            <pd:inputBindings/>
-        </pd:activity>
-        <pd:activity name="GetXMLText">
-            <pd:type>com.tibco.pe.core.GetSharedVariableActivity</pd:type>
-            <pd:resourceType>ae.activities.getSharedVariable</pd:resourceType>
-            <pd:x>558</pd:x>
-            <pd:y>336</pd:y>
-            <config>
-                <variableConfig>/TibcoProject/Resource/Common/SharedVariable/ConvertedXMLText.sharedvariable</variableConfig>
-            </config>
-            <pd:inputBindings/>
-        </pd:activity>
-        <pd:activity name="SetXMLText">
-            <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
-            <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
-            <pd:x>644</pd:x>
-            <pd:y>461</pd:y>
-            <config>
-                <variableConfig>/TibcoProject/Resource/Common/SharedVariable/ConvertedXMLText.sharedvariable</variableConfig>
-            </config>
-            <pd:inputBindings>
-                <root>
-                    <XMLText>
-                        <xsl:value-of select="concat($GetXMLText/root/XMLText,$SHP-Query/resultSet/Record[$index]/CONTACT_ID,&quot;,&quot;,$SHP-Query/resultSet/Record[$index]/EMAIL_ADDR,&quot;,&quot;,$SHP-Query/resultSet/Record[$index]/PARTY_ROLE,&quot;,&quot;,$SHP-Query/resultSet/Record[$index]/PARTY_NAME,&quot;,&quot;,$SHP-Query/resultSet/Record[$index]/SAP_ID,&quot;&#xD;&quot;)"/>
-                    </XMLText>
-                </root>
-            </pd:inputBindings>
-        </pd:activity>
-    </pd:group>
-    <pd:activity name="GetSetVariable">
-        <pd:type>com.tibco.pe.core.GetSharedVariableActivity</pd:type>
-        <pd:resourceType>ae.activities.getSharedVariable</pd:resourceType>
-        <pd:x>807</pd:x>
-        <pd:y>266</pd:y>
-        <config>
-            <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
+            <catchAll>true</catchAll>
         </config>
         <pd:inputBindings/>
     </pd:activity>
-    <pd:activity name="Send HTTP Response">
-        <pd:type>com.tibco.plugin.http.HTTPResponseActivity</pd:type>
-        <pd:resourceType>httppalette.httpWebResponse</pd:resourceType>
-        <pd:x>1130</pd:x>
-        <pd:y>215</pd:y>
+    <pd:activity name="GetData">
+        <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
+        <pd:resourceType>ae.process.subprocess</pd:resourceType>
+        <pd:x>407</pd:x>
+        <pd:y>220</pd:y>
         <config>
-            <closeConnection>true</closeConnection>
-            <eventSource>HTTP Receiver</eventSource>
-            <Headers>
-                <xsd:element name="root">
-                    <xsd:complexType>
-                        <xsd:sequence>
-                            <xsd:element name="StatusLine" type="xsd:string" minOccurs="0"/>
-                            <xsd:element name="Content-Type" type="xsd:string" minOccurs="0"/>
-                            <xsd:element name="Set-Cookie" type="xsd:string" minOccurs="0"/>
-                            <xsd:element name="Pragma" type="xsd:string" minOccurs="0"/>
-                            <xsd:element name="Location" type="xsd:string" minOccurs="0"/>
-                        </xsd:sequence>
-                    </xsd:complexType>
-                </xsd:element>
-            </Headers>
-        </config>
-        <pd:inputBindings>
-            <ResponseActivityInput>
-                <asciiContent>
-                    <xsl:value-of select="$SetVariable-1/root/param"/>
-                </asciiContent>
-            </ResponseActivityInput>
-        </pd:inputBindings>
-    </pd:activity>
-    <pd:activity name="SetVariable-1">
-        <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
-        <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
-        <pd:x>966</pd:x>
-        <pd:y>239</pd:y>
-        <config>
-            <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
-            <showResult>true</showResult>
+            <processName>/TibcoProject/Processes/GetData.process</processName>
         </config>
         <pd:inputBindings>
             <root>
-                <param>
-                    <xsl:value-of select="concat($GetSetVariable/root/param,&quot;&lt;br>&lt;a href='http://localhost:6969/?xmlString=&quot;,$GetXMLText/root/XMLText,&quot;' >Download&lt;/a>&quot;)"/>
-                </param>
+                <Shipment_Number>
+                    <xsl:value-of select="$HTTP-Receiver/ProcessStarterOutput/parameters/excelFile"/>
+                </Shipment_Number>
             </root>
         </pd:inputBindings>
     </pd:activity>
-    <pd:activity name="SHP Query">
-        <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
-        <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
-        <pd:x>316</pd:x>
-        <pd:y>251</pd:y>
-        <config>
-            <timeout>10</timeout>
-            <commit>false</commit>
-            <maxRows>100</maxRows>
-            <emptyStrAsNil>false</emptyStrAsNil>
-            <Prepared_Param_DataType>
-                <parameter>
-                    <parameterName>SHIPMENT_NUMBER</parameterName>
-                    <dataType>VARCHAR</dataType>
-                </parameter>
-            </Prepared_Param_DataType>
-            <statement>select shipment_num, sap_id, party_name, party_role, email_addr, contact_id from shp_shipment_party where shipment_num = ?</statement>
-            <jdbcSharedConfig>/TibcoProject/Connections/Common/SHP Connection.sharedjdbc</jdbcSharedConfig>
-            <oraObjects/>
-            <oraTables/>
-            <QueryOutputCachedSchemaColumns>SHIPMENT_NUM</QueryOutputCachedSchemaColumns>
-            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
-            <QueryOutputCachedSchemaDataTypesName>VARCHAR2</QueryOutputCachedSchemaDataTypesName>
-            <QueryOutputCachedSchemaStatus>OptionalElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>SAP_ID</QueryOutputCachedSchemaColumns>
-            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
-            <QueryOutputCachedSchemaDataTypesName>VARCHAR2</QueryOutputCachedSchemaDataTypesName>
-            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>PARTY_NAME</QueryOutputCachedSchemaColumns>
-            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
-            <QueryOutputCachedSchemaDataTypesName>VARCHAR2</QueryOutputCachedSchemaDataTypesName>
-            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>PARTY_ROLE</QueryOutputCachedSchemaColumns>
-            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
-            <QueryOutputCachedSchemaDataTypesName>VARCHAR2</QueryOutputCachedSchemaDataTypesName>
-            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>EMAIL_ADDR</QueryOutputCachedSchemaColumns>
-            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
-            <QueryOutputCachedSchemaDataTypesName>VARCHAR2</QueryOutputCachedSchemaDataTypesName>
-            <QueryOutputCachedSchemaStatus>OptionalElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>CONTACT_ID</QueryOutputCachedSchemaColumns>
-            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
-            <QueryOutputCachedSchemaDataTypesName>VARCHAR2</QueryOutputCachedSchemaDataTypesName>
-            <QueryOutputCachedSchemaStatus>OptionalElement</QueryOutputCachedSchemaStatus>
-        </config>
-        <pd:inputBindings>
-            <jdbcQueryActivityInput>
-                <SHIPMENT_NUMBER>
-                    <xsl:choose>
-                        <xsl:when test="exists($HTTP-Receiver/ProcessStarterOutput/parameters/excelFile)">
-                            <xsl:value-of select="$HTTP-Receiver/ProcessStarterOutput/parameters/excelFile"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:attribute name="xsi:nil">true</xsl:attribute>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </SHIPMENT_NUMBER>
-            </jdbcQueryActivityInput>
-        </pd:inputBindings>
-    </pd:activity>
-    <pd:activity name="ConvertSHPtoXMLTextSender">
+    <pd:activity name="InitializeSharedVariables">
         <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
         <pd:resourceType>ae.process.subprocess</pd:resourceType>
-        <pd:x>454</pd:x>
-        <pd:y>452</pd:y>
+        <pd:x>208</pd:x>
+        <pd:y>220</pd:y>
         <config>
-            <processName>/TibcoProject/Processes/ConvertSHPtoXMLTextSender.process</processName>
+            <processName>/TibcoProject/Processes/InitializeSharedVariables.process</processName>
         </config>
         <pd:inputBindings/>
     </pd:activity>
-    <pd:activity name="Send-HTTP-Response-1">
+    <pd:activity name="ReadFile">
+        <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
+        <pd:resourceType>ae.process.subprocess</pd:resourceType>
+        <pd:x>410</pd:x>
+        <pd:y>64</pd:y>
+        <config>
+            <processName>/TibcoProject/Processes/ReadFile.process</processName>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:activity name="Send-HTTP-Response-DownloadPage">
         <pd:type>com.tibco.plugin.http.HTTPResponseActivity</pd:type>
         <pd:resourceType>httppalette.httpWebResponse</pd:resourceType>
-        <pd:x>864</pd:x>
-        <pd:y>102</pd:y>
+        <pd:x>791</pd:x>
+        <pd:y>375</pd:y>
         <config>
             <closeConnection>true</closeConnection>
             <eventSource>HTTP Receiver</eventSource>
@@ -326,30 +135,114 @@
         <pd:inputBindings>
             <ResponseActivityInput>
                 <asciiContent>
-                    <xsl:value-of select="$Read-File/ns:ReadActivityOutputTextClass/fileContent/textContent"/>
+                    <xsl:value-of select="&quot;&lt;h1>DOWNLOADED SUCCESSFULY&lt;/h1>&lt;a href='http://localhost:6969/'>Go to MainPage&lt;/a>&quot;"/>
                 </asciiContent>
             </ResponseActivityInput>
         </pd:inputBindings>
     </pd:activity>
-    <pd:activity name="Read File">
-        <pd:type>com.tibco.plugin.file.FileReadActivity</pd:type>
-        <pd:resourceType>ae.activities.FileReadActivity</pd:resourceType>
-        <pd:x>582</pd:x>
-        <pd:y>111</pd:y>
+    <pd:activity name="Send-HTTP-Response-HomePage">
+        <pd:type>com.tibco.plugin.http.HTTPResponseActivity</pd:type>
+        <pd:resourceType>httppalette.httpWebResponse</pd:resourceType>
+        <pd:x>786</pd:x>
+        <pd:y>64</pd:y>
         <config>
-            <encoding>text</encoding>
+            <closeConnection>true</closeConnection>
+            <eventSource>HTTP Receiver</eventSource>
+            <Headers>
+                <xsd:element name="root">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="StatusLine" type="xsd:string" minOccurs="0"/>
+                            <xsd:element name="Content-Type" type="xsd:string" minOccurs="0"/>
+                            <xsd:element name="Set-Cookie" type="xsd:string" minOccurs="0"/>
+                            <xsd:element name="Pragma" type="xsd:string" minOccurs="0"/>
+                            <xsd:element name="Location" type="xsd:string" minOccurs="0"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </Headers>
         </config>
         <pd:inputBindings>
-            <pfx:ReadActivityInputClass>
-                <fileName>
-                    <xsl:value-of select="&quot;D:\TIBCO_TRAINING_ITA4\CASE_STUDY\Tibco-casestudy\HTML\CaseStudyHome.html&quot;"/>
-                </fileName>
-            </pfx:ReadActivityInputClass>
+            <ResponseActivityInput>
+                <asciiContent>
+                    <xsl:value-of select="$ReadFile/root/fileName"/>
+                </asciiContent>
+            </ResponseActivityInput>
         </pd:inputBindings>
     </pd:activity>
+    <pd:activity name="Send-HTTP-Response-ViewPage">
+        <pd:type>com.tibco.plugin.http.HTTPResponseActivity</pd:type>
+        <pd:resourceType>httppalette.httpWebResponse</pd:resourceType>
+        <pd:x>785</pd:x>
+        <pd:y>220</pd:y>
+        <config>
+            <closeConnection>true</closeConnection>
+            <eventSource>HTTP Receiver</eventSource>
+            <Headers>
+                <xsd:element name="root">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="StatusLine" type="xsd:string" minOccurs="0"/>
+                            <xsd:element name="Content-Type" type="xsd:string" minOccurs="0"/>
+                            <xsd:element name="Set-Cookie" type="xsd:string" minOccurs="0"/>
+                            <xsd:element name="Pragma" type="xsd:string" minOccurs="0"/>
+                            <xsd:element name="Location" type="xsd:string" minOccurs="0"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </Headers>
+        </config>
+        <pd:inputBindings>
+            <ResponseActivityInput>
+                <asciiContent>
+                    <xsl:value-of select="$GetData/root/AddDownloadButton"/>
+                </asciiContent>
+            </ResponseActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="SendAndDownloadData">
+        <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
+        <pd:resourceType>ae.process.subprocess</pd:resourceType>
+        <pd:x>412</pd:x>
+        <pd:y>375</pd:y>
+        <config>
+            <processName>/TibcoProject/Processes/SendAndDownloadData.process</processName>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Send-HTTP-Response-ViewPage</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Send-HTTP-Response-HomePage</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
     <pd:transition>
         <pd:from>HTTP Receiver</pd:from>
-        <pd:to>SHP Query</pd:to>
+        <pd:to>InitializeSharedVariables</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>InitializeSharedVariables</pd:from>
+        <pd:to>ReadFile</pd:to>
+        <pd:xpathDescription>No param</pd:xpathDescription>
+        <pd:lineType>Straight</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>xpath</pd:conditionType>
+        <pd:xpath>string-length($HTTP-Receiver/ProcessStarterOutput/parameters/excelFile) = 0 and string-length($HTTP-Receiver/ProcessStarterOutput/parameters/xmlString) = 0</pd:xpath>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>InitializeSharedVariables</pd:from>
+        <pd:to>GetData</pd:to>
         <pd:xpathDescription>Has XMLString Param</pd:xpathDescription>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
@@ -357,75 +250,87 @@
         <pd:xpath>string-length($HTTP-Receiver/ProcessStarterOutput/parameters/xmlString)  = 0 and string-length($HTTP-Receiver/ProcessStarterOutput/parameters/excelFile) !=0</pd:xpath>
     </pd:transition>
     <pd:transition>
-        <pd:from>Send HTTP Response</pd:from>
-        <pd:to>End</pd:to>
-        <pd:lineType>Default</pd:lineType>
-        <pd:lineColor>-16777216</pd:lineColor>
-        <pd:conditionType>always</pd:conditionType>
-    </pd:transition>
-    <pd:transition>
-        <pd:from>SHP Query</pd:from>
-        <pd:to>SetList</pd:to>
-        <pd:lineType>Default</pd:lineType>
-        <pd:lineColor>-16777216</pd:lineColor>
-        <pd:conditionType>always</pd:conditionType>
-    </pd:transition>
-    <pd:transition>
-        <pd:from>SetList</pd:from>
-        <pd:to>GetSetVariable</pd:to>
-        <pd:lineType>Default</pd:lineType>
-        <pd:lineColor>-16777216</pd:lineColor>
-        <pd:conditionType>always</pd:conditionType>
-    </pd:transition>
-    <pd:transition>
-        <pd:from>GetSetVariable</pd:from>
-        <pd:to>SetVariable-1</pd:to>
-        <pd:lineType>Default</pd:lineType>
-        <pd:lineColor>-16777216</pd:lineColor>
-        <pd:conditionType>always</pd:conditionType>
-    </pd:transition>
-    <pd:transition>
-        <pd:from>SetVariable-1</pd:from>
-        <pd:to>Send HTTP Response</pd:to>
-        <pd:lineType>Default</pd:lineType>
-        <pd:lineColor>-16777216</pd:lineColor>
-        <pd:conditionType>always</pd:conditionType>
-    </pd:transition>
-    <pd:transition>
-        <pd:from>HTTP Receiver</pd:from>
-        <pd:to>ConvertSHPtoXMLTextSender</pd:to>
-        <pd:lineType>Default</pd:lineType>
+        <pd:from>InitializeSharedVariables</pd:from>
+        <pd:to>SendAndDownloadData</pd:to>
+        <pd:lineType>Straight</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>otherwise</pd:conditionType>
     </pd:transition>
     <pd:transition>
-        <pd:from>ConvertSHPtoXMLTextSender</pd:from>
+        <pd:from>Send-HTTP-Response-DownloadPage</pd:from>
         <pd:to>End</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
     </pd:transition>
     <pd:transition>
-        <pd:from>HTTP Receiver</pd:from>
-        <pd:to>Read File</pd:to>
-        <pd:xpathDescription>No param</pd:xpathDescription>
-        <pd:lineType>Multiple Bends</pd:lineType>
+        <pd:from>ReadFile</pd:from>
+        <pd:to>Send-HTTP-Response-HomePage</pd:to>
+        <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
-        <pd:conditionType>xpath</pd:conditionType>
-        <pd:xpath>string-length($HTTP-Receiver/ProcessStarterOutput/parameters/excelFile) = 0 and string-length($HTTP-Receiver/ProcessStarterOutput/parameters/xmlString) = 0</pd:xpath>
+        <pd:conditionType>always</pd:conditionType>
     </pd:transition>
     <pd:transition>
-        <pd:from>Send-HTTP-Response-1</pd:from>
+        <pd:from>GetData</pd:from>
+        <pd:to>Send-HTTP-Response-ViewPage</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>SendAndDownloadData</pd:from>
+        <pd:to>Send-HTTP-Response-DownloadPage</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Catch</pd:from>
         <pd:to>End</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
     </pd:transition>
-    <pd:transition>
-        <pd:from>Read File</pd:from>
-        <pd:to>Send-HTTP-Response-1</pd:to>
-        <pd:lineType>Default</pd:lineType>
-        <pd:lineColor>-16777216</pd:lineColor>
-        <pd:conditionType>always</pd:conditionType>
-    </pd:transition>
+    <pd:label>
+        <pd:name>Label</pd:name>
+        <pd:description>GENERATE HOMEPAGE</pd:description>
+        <pd:x>599</pd:x>
+        <pd:y>37</pd:y>
+        <pd:width>236</pd:width>
+        <pd:height>33</pd:height>
+        <pd:fontName>Dialog.plain-plain-18</pd:fontName>
+        <pd:fontColor>-52429</pd:fontColor>
+        <pd:color>-1</pd:color>
+        <pd:type>solid</pd:type>
+        <pd:thickness>0</pd:thickness>
+        <pd:fade>true</pd:fade>
+    </pd:label>
+    <pd:label>
+        <pd:name>Label (1)</pd:name>
+        <pd:description>COLLECT DATA</pd:description>
+        <pd:x>577</pd:x>
+        <pd:y>201</pd:y>
+        <pd:width>166</pd:width>
+        <pd:height>40</pd:height>
+        <pd:fontName>Dialog.plain-plain-18</pd:fontName>
+        <pd:fontColor>-13421569</pd:fontColor>
+        <pd:color>-1</pd:color>
+        <pd:type>solid</pd:type>
+        <pd:thickness>0</pd:thickness>
+        <pd:fade>true</pd:fade>
+    </pd:label>
+    <pd:label>
+        <pd:name>Label (1) (1)</pd:name>
+        <pd:description>SEND AND DOWNLOAD DATA</pd:description>
+        <pd:x>615</pd:x>
+        <pd:y>355</pd:y>
+        <pd:width>314</pd:width>
+        <pd:height>45</pd:height>
+        <pd:fontName>Dialog.plain-plain-18</pd:fontName>
+        <pd:fontColor>-16724941</pd:fontColor>
+        <pd:color>-1</pd:color>
+        <pd:type>solid</pd:type>
+        <pd:thickness>0</pd:thickness>
+        <pd:fade>true</pd:fade>
+    </pd:label>
 </pd:ProcessDefinition>
