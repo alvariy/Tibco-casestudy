@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+Select excel file to upload:
+<input type="file" id="myFile">
+
+
+<p>Click the button below do the display the file path of the file upload button above (you must select a file first).</p>
+
+
+<button type="submit"  onclick="myFunction()">Try it</button>
+
+
+<p name='excelFile' id="demo"></p>
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myFile").value;
+  document.getElementById("demo").innerHTML = x;
+  var y = "http://localhost:6969/?excelFile=";
+  var location = y.concat(x);
+  window.location = location;
+}
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
