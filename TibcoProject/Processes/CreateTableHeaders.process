@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <pd:name>Processes/InitializeSharedVariables.process</pd:name>
+    <pd:name>Processes/CreateTableHeaders.process</pd:name>
     <pd:startName>Start</pd:startName>
-    <pd:startX>100</pd:startX>
-    <pd:startY>150</pd:startY>
+    <pd:startX>150</pd:startX>
+    <pd:startY>64</pd:startY>
     <pd:returnBindings/>
     <pd:endName>End</pd:endName>
-    <pd:endX>412</pd:endX>
-    <pd:endY>150</pd:endY>
+    <pd:endX>641</pd:endX>
+    <pd:endY>65</pd:endY>
     <pd:errorSchemas/>
     <pd:processVariables/>
-    <pd:targetNamespace>http://xmlns.example.com/1575541518960</pd:targetNamespace>
+    <pd:targetNamespace>http://xmlns.example.com/1575595665299</pd:targetNamespace>
     <pd:activity name="GetHTMLData">
         <pd:type>com.tibco.pe.core.GetSharedVariableActivity</pd:type>
         <pd:resourceType>ae.activities.getSharedVariable</pd:resourceType>
-        <pd:x>208</pd:x>
-        <pd:y>150</pd:y>
+        <pd:x>280</pd:x>
+        <pd:y>66</pd:y>
         <config>
             <variableConfig>/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
         </config>
@@ -24,15 +24,15 @@
     <pd:activity name="SetHTMLData">
         <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
         <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
-        <pd:x>315</pd:x>
-        <pd:y>150</pd:y>
+        <pd:x>474</pd:x>
+        <pd:y>69</pd:y>
         <config>
             <variableConfig>/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
         </config>
         <pd:inputBindings>
             <root>
                 <param>
-                    <xsl:value-of select="&quot;&quot;"/>
+                    <xsl:value-of select="concat($GetHTMLData/root/param,&quot;&lt;table>&lt;tr>&lt;th>Shipment Number&lt;/th>&lt;th>SAP ID&lt;/th>&lt;th>Party Name&lt;/th>&lt;th>Party Code&lt;/th>&lt;th>Email Address&lt;/th>&lt;th>Contact ID&lt;/th>&lt;/tr>&quot;)"/>
                 </param>
             </root>
         </pd:inputBindings>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <pd:name>TibcoProject/Processes/SendAndDownloadData.process</pd:name>
+    <pd:name>Processes/SendAndDownloadData.process</pd:name>
     <pd:startName>Start</pd:startName>
     <pd:startX>150</pd:startX>
     <pd:startY>64</pd:startY>
@@ -17,7 +17,7 @@
         <pd:x>398</pd:x>
         <pd:y>64</pd:y>
         <config>
-            <processName>/TibcoProject/Processes/ConvertSHPtoXMLTextSender.process</processName>
+            <processName>/Processes/ConvertSHPtoXMLTextSender.process</processName>
         </config>
         <pd:inputBindings>
             <root>
@@ -33,7 +33,7 @@
         <pd:x>255</pd:x>
         <pd:y>64</pd:y>
         <config>
-            <variableConfig>/TibcoProject/Resource/Common/SharedVariable/ConvertedXMLText.sharedvariable</variableConfig>
+            <variableConfig>/Resource/Common/SharedVariable/ConvertedXMLText.sharedvariable</variableConfig>
         </config>
         <pd:inputBindings/>
     </pd:activity>
@@ -43,12 +43,12 @@
         <pd:x>516</pd:x>
         <pd:y>64</pd:y>
         <config>
-            <variableConfig>/TibcoProject/Resource/Common/SharedVariable/ConvertedXMLText.sharedvariable</variableConfig>
+            <variableConfig>/Resource/Common/SharedVariable/ConvertedXMLText.sharedvariable</variableConfig>
         </config>
         <pd:inputBindings>
             <root>
                 <XMLText>
-                    <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="&quot;&quot;"/>
+                    <xsl:value-of select="&quot;&quot;"/>
                 </XMLText>
             </root>
         </pd:inputBindings>

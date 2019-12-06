@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <pd:name>TibcoProject/Processes/GetData.process</pd:name>
+    <pd:name>Processes/GetData.process</pd:name>
     <pd:startName>Start</pd:startName>
     <pd:startType>
         <xsd:element name="root">
@@ -11,8 +11,8 @@
             </xsd:complexType>
         </xsd:element>
     </pd:startType>
-    <pd:startX>150</pd:startX>
-    <pd:startY>58</pd:startY>
+    <pd:startX>140</pd:startX>
+    <pd:startY>163</pd:startY>
     <pd:returnBindings>
         <root>
             <AddDownloadButton>
@@ -30,7 +30,7 @@
             </xsd:complexType>
         </xsd:element>
     </pd:endType>
-    <pd:endX>820</pd:endX>
+    <pd:endX>1405</pd:endX>
     <pd:endY>58</pd:endY>
     <pd:errorSchemas/>
     <pd:processVariables/>
@@ -38,8 +38,8 @@
     <pd:group name="SetList">
         <pd:type>com.tibco.pe.core.LoopGroup</pd:type>
         <pd:resourceType>ae.process.group</pd:resourceType>
-        <pd:x>362</pd:x>
-        <pd:y>27</pd:y>
+        <pd:x>566</pd:x>
+        <pd:y>1</pd:y>
         <pd:width>485</pd:width>
         <pd:height>322</pd:height>
         <pd:collapsedWidth>57</pd:collapsedWidth>
@@ -57,7 +57,7 @@
             <pd:accumulateOutput>false</pd:accumulateOutput>
         </config>
         <pd:inputBindings/>
-        <pd:expanded>false</pd:expanded>
+        <pd:expanded>true</pd:expanded>
         <pd:transition>
             <pd:from>start</pd:from>
             <pd:to>GetXMLText</pd:to>
@@ -96,15 +96,15 @@
         <pd:activity name="SetHTMLData">
             <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
             <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
-            <pd:x>758</pd:x>
-            <pd:y>273</pd:y>
+            <pd:x>962</pd:x>
+            <pd:y>247</pd:y>
             <config>
-                <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
+                <variableConfig>/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
             </config>
             <pd:inputBindings>
                 <root>
                     <param>
-                        <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="concat($GetHTMLData/root/param,$SHP-Query/resultSet/Record[$index]/CONTACT_ID,$SHP-Query/resultSet/Record[$index]/EMAIL_ADDR,$SHP-Query/resultSet/Record[$index]/PARTY_ROLE,$SHP-Query/resultSet/Record[$index]/PARTY_NAME,$SHP-Query/resultSet/Record[$index]/SAP_ID,&quot;&lt;br>&quot;)"/>
+                        <xsl:value-of select="concat($GetHTMLData/root/param,&quot;&lt;tr>&lt;td>&quot;,$Start/root/Shipment_Number,&quot;&lt;/td>&lt;td>&quot;,$SHP-Query/resultSet/Record[$index]/SAP_ID,&quot;&lt;/td>&lt;td>&quot;,$SHP-Query/resultSet/Record[$index]/PARTY_NAME,&quot;&lt;/td>&lt;td>&quot;,$SHP-Query/resultSet/Record[$index]/PARTY_ROLE,&quot;&lt;/td>&lt;td>&quot;,$SHP-Query/resultSet/Record[$index]/EMAIL_ADDR,&quot;&lt;/td>&lt;td>&quot;,$SHP-Query/resultSet/Record[$index]/CONTACT_ID,&quot;&lt;/td>&lt;/tr>&quot;)"/>
                     </param>
                 </root>
             </pd:inputBindings>
@@ -112,35 +112,35 @@
         <pd:activity name="GetHTMLData">
             <pd:type>com.tibco.pe.core.GetSharedVariableActivity</pd:type>
             <pd:resourceType>ae.activities.getSharedVariable</pd:resourceType>
-            <pd:x>651</pd:x>
-            <pd:y>98</pd:y>
+            <pd:x>855</pd:x>
+            <pd:y>72</pd:y>
             <config>
-                <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
+                <variableConfig>/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
             </config>
             <pd:inputBindings/>
         </pd:activity>
         <pd:activity name="GetXMLText">
             <pd:type>com.tibco.pe.core.GetSharedVariableActivity</pd:type>
             <pd:resourceType>ae.activities.getSharedVariable</pd:resourceType>
-            <pd:x>449</pd:x>
-            <pd:y>98</pd:y>
+            <pd:x>653</pd:x>
+            <pd:y>72</pd:y>
             <config>
-                <variableConfig>/TibcoProject/Resource/Common/SharedVariable/ConvertedXMLText.sharedvariable</variableConfig>
+                <variableConfig>/Resource/Common/SharedVariable/ConvertedXMLText.sharedvariable</variableConfig>
             </config>
             <pd:inputBindings/>
         </pd:activity>
         <pd:activity name="SetXMLText">
             <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
             <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
-            <pd:x>518</pd:x>
-            <pd:y>273</pd:y>
+            <pd:x>722</pd:x>
+            <pd:y>247</pd:y>
             <config>
-                <variableConfig>/TibcoProject/Resource/Common/SharedVariable/ConvertedXMLText.sharedvariable</variableConfig>
+                <variableConfig>/Resource/Common/SharedVariable/ConvertedXMLText.sharedvariable</variableConfig>
             </config>
             <pd:inputBindings>
                 <root>
                     <XMLText>
-                        <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="concat($GetXMLText/root/XMLText,$SHP-Query/resultSet/Record[$index]/CONTACT_ID,&quot;,&quot;,$SHP-Query/resultSet/Record[$index]/EMAIL_ADDR,&quot;,&quot;,$SHP-Query/resultSet/Record[$index]/PARTY_ROLE,&quot;,&quot;,$SHP-Query/resultSet/Record[$index]/PARTY_NAME,&quot;,&quot;,$SHP-Query/resultSet/Record[$index]/SAP_ID,&quot;&#xD;&quot;)"/>
+                        <xsl:value-of select="concat($GetXMLText/root/XMLText,$SHP-Query/resultSet/Record[$index]/CONTACT_ID,&quot;,&quot;,$SHP-Query/resultSet/Record[$index]/EMAIL_ADDR,&quot;,&quot;,$SHP-Query/resultSet/Record[$index]/PARTY_ROLE,&quot;,&quot;,$SHP-Query/resultSet/Record[$index]/PARTY_NAME,&quot;,&quot;,$SHP-Query/resultSet/Record[$index]/SAP_ID,&quot;&#xD;&quot;)"/>
                     </XMLText>
                 </root>
             </pd:inputBindings>
@@ -149,16 +149,16 @@
     <pd:activity name="AddDownloadButton">
         <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
         <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
-        <pd:x>665</pd:x>
+        <pd:x>1250</pd:x>
         <pd:y>58</pd:y>
         <config>
-            <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
+            <variableConfig>/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
             <showResult>true</showResult>
         </config>
         <pd:inputBindings>
             <root>
                 <param>
-                    <xsl:value-of xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="concat($GetSetVariable/root/param,&quot;&lt;br>&lt;a href='http://localhost:6969/?xmlString=&quot;,$GetXMLText/root/XMLText,&quot;' >Download&lt;/a>&quot;)"/>
+                    <xsl:value-of select="concat(&quot;&lt;table>&lt;tr>&lt;th>Shipment Number&lt;/th>&lt;th>SAP ID&lt;/th>&lt;th>Party Name&lt;/th>&lt;th>Party Code&lt;/th>&lt;th>Email Address&lt;/th>&lt;th>Contact ID&lt;/th>&lt;/tr>&quot;,$GetSetVariable/root/param,&quot;&lt;/table>&lt;br>&lt;a href='http://localhost:6969/?xmlString=&quot;,$GetXMLText/root/XMLText,&quot;' >&lt;input type='button' value='Download' />&lt;/a>&quot;)"/>
                 </param>
             </root>
         </pd:inputBindings>
@@ -166,18 +166,18 @@
     <pd:activity name="GetSetVariable">
         <pd:type>com.tibco.pe.core.GetSharedVariableActivity</pd:type>
         <pd:resourceType>ae.activities.getSharedVariable</pd:resourceType>
-        <pd:x>519</pd:x>
+        <pd:x>1104</pd:x>
         <pd:y>58</pd:y>
         <config>
-            <variableConfig>/TibcoProject/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
+            <variableConfig>/Resource/Common/SharedVariable/Shared Variable.sharedvariable</variableConfig>
         </config>
         <pd:inputBindings/>
     </pd:activity>
     <pd:activity name="SHP Query">
         <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
         <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
-        <pd:x>250</pd:x>
-        <pd:y>58</pd:y>
+        <pd:x>448</pd:x>
+        <pd:y>164</pd:y>
         <config>
             <timeout>10</timeout>
             <commit>false</commit>
@@ -190,7 +190,7 @@
                 </parameter>
             </Prepared_Param_DataType>
             <statement>select shipment_num, sap_id, party_name, party_role, email_addr, contact_id from shp_shipment_party where shipment_num = ?</statement>
-            <jdbcSharedConfig>/TibcoProject/Connections/Common/SHP Connection.sharedjdbc</jdbcSharedConfig>
+            <jdbcSharedConfig>/Connections/Common/SHP Connection.sharedjdbc</jdbcSharedConfig>
             <oraObjects/>
             <oraTables/>
             <QueryOutputCachedSchemaColumns>SHIPMENT_NUM</QueryOutputCachedSchemaColumns>
@@ -226,16 +226,35 @@
             </jdbcQueryActivityInput>
         </pd:inputBindings>
     </pd:activity>
+    <pd:activity name="GetXMLText-1">
+        <pd:type>com.tibco.pe.core.GetSharedVariableActivity</pd:type>
+        <pd:resourceType>ae.activities.getSharedVariable</pd:resourceType>
+        <pd:x>235</pd:x>
+        <pd:y>167</pd:y>
+        <config>
+            <variableConfig>/Resource/Common/SharedVariable/ConvertedXMLText.sharedvariable</variableConfig>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:activity name="SetXMLText-1">
+        <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
+        <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
+        <pd:x>326</pd:x>
+        <pd:y>169</pd:y>
+        <config>
+            <variableConfig>/Resource/Common/SharedVariable/ConvertedXMLText.sharedvariable</variableConfig>
+        </config>
+        <pd:inputBindings>
+            <root>
+                <XMLText>
+                    <xsl:value-of select="&quot;&quot;"/>
+                </XMLText>
+            </root>
+        </pd:inputBindings>
+    </pd:activity>
     <pd:transition>
         <pd:from>Start</pd:from>
-        <pd:to>SHP Query</pd:to>
-        <pd:lineType>Default</pd:lineType>
-        <pd:lineColor>-16777216</pd:lineColor>
-        <pd:conditionType>always</pd:conditionType>
-    </pd:transition>
-    <pd:transition>
-        <pd:from>SHP Query</pd:from>
-        <pd:to>SetList</pd:to>
+        <pd:to>GetXMLText-1</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
@@ -257,6 +276,27 @@
     <pd:transition>
         <pd:from>AddDownloadButton</pd:from>
         <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>SHP Query</pd:from>
+        <pd:to>SetList</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>GetXMLText-1</pd:from>
+        <pd:to>SetXMLText-1</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>SetXMLText-1</pd:from>
+        <pd:to>SHP Query</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>

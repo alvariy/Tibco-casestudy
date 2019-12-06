@@ -21,7 +21,7 @@
             </xsd:complexType>
         </xsd:element>
     </pd:endType>
-    <pd:endX>450</pd:endX>
+    <pd:endX>491</pd:endX>
     <pd:endY>64</pd:endY>
     <pd:errorSchemas/>
     <pd:processVariables/>
@@ -29,7 +29,7 @@
     <pd:activity name="Read File">
         <pd:type>com.tibco.plugin.file.FileReadActivity</pd:type>
         <pd:resourceType>ae.activities.FileReadActivity</pd:resourceType>
-        <pd:x>304</pd:x>
+        <pd:x>260</pd:x>
         <pd:y>64</pd:y>
         <config>
             <encoding>text</encoding>

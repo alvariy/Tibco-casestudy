@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Repository:repository xmlns:Repository="http://www.tibco.com/xmlns/repo/types/2002">
+    <enterpriseArchive>
+        <sharedArchive name="Shared Archive">
+            <resourceType>shared.archive.resource</resourceType>
+            <authorProperty>CRUZTR</authorProperty>
+            <sharedResources>/TibcoProject/Resource/Common/SharedVariable</sharedResources>
+            <sharedFiles/>
+            <sharedJarFiles/>
+            <resourceDependencyMap>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;java version="1.8.0_51" class="java.beans.XMLDecoder"&gt;
+ &lt;object class="java.util.HashMap"&gt;
+  &lt;void method="put"&gt;
+   &lt;string&gt;/TibcoProject/Resource/Common/SharedVariable/.folder&lt;/string&gt;
+   &lt;object class="com.tibco.ae.tools.palettes.archivebuilderpalette.DependencyList" id="DependencyList0"&gt;
+    &lt;void class="com.tibco.ae.tools.palettes.archivebuilderpalette.DependencyList" method="getField"&gt;
+     &lt;string&gt;packagedInRepo&lt;/string&gt;
+     &lt;void method="set"&gt;
+      &lt;object idref="DependencyList0"/&gt;
+      &lt;boolean&gt;false&lt;/boolean&gt;
+     &lt;/void&gt;
+    &lt;/void&gt;
+   &lt;/object&gt;
+  &lt;/void&gt;
+ &lt;/object&gt;
+&lt;/java&gt;
+</resourceDependencyMap>
+        </sharedArchive>
+        <processArchive name="Process Archive">
+            <resourceType>process.archive.resource</resourceType>
+            <authorProperty>CRUZTR</authorProperty>
+            <processProperty>/TibcoProject/Processes/ConvertSHPtoXMLTextSender.process,/TibcoProject/Processes/InitializeSharedVariables.process,/TibcoProject/Processes/ReadFile.process,/TibcoProject/Processes/GetData.process,/TibcoProject/Processes/SendAndDownloadData.process,/TibcoProject/Processes/CreateTableHeaders.process,/TibcoProject/Processes/ConvertSHPtoXMLTextReceiver.process,/TibcoProject/Processes/DisplayShipmentDetails.process</processProperty>
+        </processArchive>
+        <versionProperty>1</versionProperty>
+        <authorProperty>CRUZTR</authorProperty>
+        <addServiceSettableGvars>true</addServiceSettableGvars>
+        <name>ARROW1.5-CaseStudy</name>
+        <designer/>
+        <fileLocationProperty>C:\Users\cruztr\Tibco-casestudy.ear</fileLocationProperty>
+    </enterpriseArchive>
+</Repository:repository>
